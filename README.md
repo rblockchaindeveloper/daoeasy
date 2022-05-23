@@ -2,7 +2,8 @@
 
 # Metis X Gitcoin Bounty - L2 Rollathon
 **Metis**
-`    },
+
+- `    },
     metis_local: {
       url: "http://localhost:8545",
       accounts:
