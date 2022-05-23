@@ -1,0 +1,65 @@
+{
+  "name": "@dao-quest/dapp",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "dev": "next dev",
+    "build": "yarn root:prepare && next build",
+    "start": "next start",
+    "typecheck": "tsc",
+    "lint": "eslint --ignore-path .gitignore \"*/**/*.{js,jsx,ts,tsx}\"",
+    "format": "prettier --ignore-path .gitignore --write .",
+    "root:prepare": "yarn --cwd ../../ root:prepare",
+    "prepare": "yarn root:prepare",
+    "generate": "graphql-codegen --config=codegen.yml"
+  },
+  "dependencies": {
+    "@chakra-ui/icons": "^1.1.7",
+    "@chakra-ui/react": "^1.8.7",
+    "@dao-quest/utils": "1.0.0",
+    "@davatar/react": "^1.9.0",
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
+    "@gnosis.pm/safe-apps-web3modal": "^12.0.0",
+    "@superfluid-finance/sdk-core": "^0.3.2",
+    "@types/busboy": "^1.5.0",
+    "@walletconnect/web3-provider": "^1.7.7",
+    "busboy": "^1.5.0",
+    "ethers": "^5.6.2",
+    "fast-memoize": "^2.5.2",
+    "focus-visible": "^5.2.0",
+    "formik": "^2.2.9",
+    "framer-motion": "^6.2.9",
+    "graphql": "^16.3.0",
+    "graphql-request": "^4.2.0",
+    "graphql-tag": "^2.12.6",
+    "next": "12.1.4",
+    "next-urql": "^3.3.2",
+    "react": "18.0.0",
+    "react-dom": "18.0.0",
+    "react-dropzone": "^12.0.5",
+    "react-hot-toast": "^2.2.0",
+    "sass": "^1.50.0",
+    "typescript": "^4.6.3",
+    "urql": "^2.2.0",
+    "web3modal": "^1.9.6"
+  },
+  "devDependencies": {
+    "@graphql-codegen/add": "^3.1.1",
+    "@graphql-codegen/cli": "^2.6.2",
+    "@graphql-codegen/typescript": "^2.4.8",
+    "@graphql-codegen/typescript-operations": "^2.3.5",
+    "@graphql-codegen/typescript-urql": "^3.5.7",
+    "@next/eslint-plugin-next": "^12.1.0",
+    "eslint-config-next": "^12.1.4"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,yml,yaml,md}": [
+      "prettier --write"
+    ]
+  }
+}

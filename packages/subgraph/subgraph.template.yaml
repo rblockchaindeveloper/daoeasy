@@ -1,0 +1,76 @@
+specVersion: 0.0.2
+description: QuestChain
+schema:
+  file: ./src/schema.graphql
+dataSources:
+  # prettier-ignore
+  {{#factories}}
+  - kind: ethereum/contract
+    name: QuestChainFactory{{factoryName}}
+    # prettier-ignore
+    network: {{network}}
+    source:
+      address: '{{factory}}'
+      abi: QuestChainFactory
+      # prettier-ignore
+      startBlock: {{blockNumber}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - QuestChain
+        - QuestStatus
+        - Quest
+        - User
+      abis:
+        - name: QuestChain
+          file: ./src/abis/QuestChain.json
+        - name: QuestChainFactory
+          file: ./src/abis/QuestChainFactory.json
+      eventHandlers:
+        - event: NewQuestChain(indexed uint256,address)
+          handler: handleNewQuestChain
+
+      file: ./src/mappings/factory.ts
+  # prettier-ignore
+  {{/factories}}
+templates:
+  - kind: ethereum/contract
+    name: QuestChain
+    # prettier-ignore
+    network: {{network}}
+    source:
+      abi: QuestChain
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - QuestChain
+        - QuestStatus
+        - Quest
+        - User
+      abis:
+        - name: QuestChain
+          file: ./src/abis/QuestChain.json
+        - name: QuestChainFactory
+          file: ./src/abis/QuestChainFactory.json
+      eventHandlers:
+        - event: QuestChainCreated(indexed address,string)
+          handler: handleChainCreated
+        - event: QuestChainEdited(indexed address,string)
+          handler: handleChainEdited
+        - event: RoleGranted(indexed bytes32,indexed address,indexed address)
+          handler: handleRoleGranted
+        - event: RoleRevoked(indexed bytes32,indexed address,indexed address)
+          handler: handleRoleRevoked
+        - event: QuestCreated(indexed address,indexed uint256,string)
+          handler: handleCreated
+        - event: QuestEdited(indexed address,indexed uint256,string)
+          handler: handleEdited
+        - event: QuestProofSubmitted(indexed address,indexed uint256,string)
+          handler: handleProofSubmitted
+        - event: QuestProofReviewed(indexed address,indexed address,indexed uint256,bool,string)
+          handler: handleProofReviewed
+      file: ./src/mappings/questChain.ts
